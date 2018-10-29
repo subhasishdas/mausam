@@ -4,10 +4,10 @@ import requests
 import time
 
 from twilio.rest import Client
-#account = "AC87b15bfd3a62ff7b07fe498901d9e07a"
-account = "AC472dcf29e5e7a74bd57cc4f379487064"
-#token = "4a8347e2f1cd1f18b8db8fbfd32cfc29"
-token = "494fe477a11ece0a03b20cdfdbce4475"
+
+account = "__account id__"
+
+token = "__token id__"
 
 client = Client(account, token)
 
@@ -45,12 +45,12 @@ while (True):
             print("---->>>message")
             message = client.messages.create(to="+919894222521", from_="+19733584440",body=msg)
         print(t)        
-        t1=requests.get("https://api.thingspeak.com/update?api_key=N2IDD9BA21XFIDI9&field1=%s"%(t[1]))
-        t2=requests.get("https://api.thingspeak.com/update?api_key=N2IDD9BA21XFIDI9&field2=%s"%(t[0]))
-        t3=requests.get("https://api.thingspeak.com/update?api_key=N2IDD9BA21XFIDI9&field3=%s"%(t[2]))
-        t4=requests.get("https://api.thingspeak.com/update?api_key=N2IDD9BA21XFIDI9&field4=%s"%(t[3]))
+        t1=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field1=%s"%(t[1]))
+        t2=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field2=%s"%(t[0]))
+        t3=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field3=%s"%(t[2]))
+        t4=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field4=%s"%(t[3]))
         
-        #54FY4DRVHN2S6GZJ
+       
         print(t4,t3,t2,t1)
         print("Uploaded")
         
