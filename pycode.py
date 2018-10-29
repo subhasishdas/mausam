@@ -43,7 +43,7 @@ while (True):
             
         if msg!="":
             print("---->>>message")
-            message = client.messages.create(to="+919894222521", from_="+19733584440",body=msg)
+            message = client.messages.create(to="__ur phone number__", from_="__twilio virtual number__",body=msg)
         print(t)        
         t1=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field1=%s"%(t[1]))
         t2=requests.get("https://api.thingspeak.com/update?api_key=__channel id__&field2=%s"%(t[0]))
