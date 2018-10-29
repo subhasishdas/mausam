@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Weather Monitoring</title>
+		<meta http-equiv="refresh" content="10">
+		<meta charset="utf-8">
+		<meta name="description" content="Weather and Air Quality Monitoring System">
+		<meta name="author" content="Deep Baldha">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/icomoon/style.css">
+		<link rel="stylesheet" href="css/ink.css" class="colors">
+
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body id="home">
+		<div align="center">
+  		<p id="msg"></p>
+		</div>
+		<div id="header">
+		<div class="header-content">
+			<p><font size="50" color="white" face="Comic sans MS"><center>Weather and Air Quality Monitoring System</center></font></p>
+			<div class="countdown" id="countdown">
+				<div class="container">
+					  <div class="row">
+						<div class="countdown-item col-sm-4 col-xs-4">
+							<div class="countdown-number" id="countdown-days"></div>
+							<div class="countdown-label">Temperature in deg. Cel.</div>
+						</div>
+
+						<div class="countdown-item col-sm-4 col-xs-4">
+							<div class="countdown-number" id="countdown-hours"></div>
+							<div class="countdown-label">Humidity %</div>
+						</div>
+
+						<div class="countdown-item col-sm-4 col-xs-4">
+							<div class="countdown-number" id="countdown-minutes"></div>
+							<div class="countdown-label">CO2 Level in PPM</div>
+						</div>
+						<div class="countdown-item col-sm-4 col-xs-4">
+							<div class="countdown-number" id="countdown-seconds"></div>
+							<div class="countdown-label">Relative Pressure %</div>
+						</div>
+						<!--
+						<div class="countdown-item col-sm-3 col-xs-3">
+							<div class="countdown-number" id="countdown-seconds">44</div>
+							<div class="countdown-label">seconds</div>
+						</div>
+						-->
+					</div>
+
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+var xmlhttp1 = new XMLHttpRequest();
+var xmlhttp2 = new XMLHttpRequest();
+var xmlhttp3 = new XMLHttpRequest();
+var xmlhttp4 = new XMLHttpRequest();
+
+var url1 = "https://api.thingspeak.com/channels/604210/fields/1/last.json";
+var url2 = "https://api.thingspeak.com/channels/604210/fields/2/last.json";
+var url3 = "https://api.thingspeak.com/channels/604210/fields/3/last.json";
+var url4 = "https://api.thingspeak.com/channels/604210/fields/4/last.json";
+
+xmlhttp1.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr,1);
+    }
+};
+
+xmlhttp2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr,2);
+    }
+};
+
+xmlhttp3.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr,3);
+    }
+};
+xmlhttp4.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr,4);
+    }
+};
+
+xmlhttp1.open("GET", url1, true);
+xmlhttp1.send();
+
+xmlhttp2.open("GET", url2, true);
+xmlhttp2.send();
+
+xmlhttp3.open("GET", url3, true);
+xmlhttp3.send();
+
+xmlhttp4.open("GET", url4, true);
+xmlhttp4.send();
+
+function myFunction(arr,n) {
+	if(n==1)
+    {document.getElementById("countdown-days").innerHTML = arr.field1;}
+	if(n==2)
+	{document.getElementById("countdown-hours").innerHTML = arr.field2;}
+	if(n==3)
+	{document.getElementById("countdown-minutes").innerHTML = arr.field3;}
+	if(n==4)
+	{document.getElementById("countdown-seconds").innerHTML = arr.field4;}
+
+    }
+
+</script>
+
+
+
+
+
+
+	</body>
+</html>
